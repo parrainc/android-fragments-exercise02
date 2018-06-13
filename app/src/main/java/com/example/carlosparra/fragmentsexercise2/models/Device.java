@@ -13,7 +13,7 @@ public class Device {
         return deviceName;
     }
 
-    public ArrayList<Device> createListOfDevices(DeviceMakes deviceMake) {
+    public static ArrayList<Device> createListOfDevices(DeviceMakes deviceMake) {
         ArrayList<Device> devices = new ArrayList<>();
 
         switch (deviceMake) {

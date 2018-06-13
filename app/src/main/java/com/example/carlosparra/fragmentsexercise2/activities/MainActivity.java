@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.carlosparra.fragmentsexercise2.R;
 import com.example.carlosparra.fragmentsexercise2.fragments.LeftFragment;
 import com.example.carlosparra.fragmentsexercise2.fragments.RightFragment;
+import com.example.carlosparra.fragmentsexercise2.models.DeviceMakes;
 
 public class MainActivity extends FragmentActivity implements LeftFragment.LeftFragmentListener {
 
@@ -16,9 +17,9 @@ public class MainActivity extends FragmentActivity implements LeftFragment.LeftF
     }
 
     @Override
-    public void sendData(String data) {
+    public void sendData(DeviceMakes data) {
         RightFragment rightFragment = (RightFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentRight);
-        rightFragment.setText(data);
+        rightFragment.setDeviceMake(data);
     }
 }

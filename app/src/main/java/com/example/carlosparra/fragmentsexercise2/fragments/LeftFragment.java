@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.carlosparra.fragmentsexercise2.R;
+import com.example.carlosparra.fragmentsexercise2.models.DeviceMakes;
 
 public class LeftFragment extends Fragment {
 
@@ -45,7 +46,7 @@ public class LeftFragment extends Fragment {
         imageButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonClicked("Add");
+                buttonClicked(DeviceMakes.Windows);
             }
         });
 
@@ -53,25 +54,25 @@ public class LeftFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                buttonClicked("Android");
+                buttonClicked(DeviceMakes.Android);
             }
         });
 
         imageButtonLaptop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonClicked("Laptop");
+                buttonClicked(DeviceMakes.iOS);
             }
         });
 
         return view;
     }
 
-    private void buttonClicked(String from) {
-        callback.sendData(getString(R.string.message_on_fragment, from));
+    private void buttonClicked(DeviceMakes deviceMake) {
+        callback.sendData(deviceMake);
     }
 
     public interface LeftFragmentListener {
-        void sendData(String data);
+        void sendData(DeviceMakes data);
     }
 }
