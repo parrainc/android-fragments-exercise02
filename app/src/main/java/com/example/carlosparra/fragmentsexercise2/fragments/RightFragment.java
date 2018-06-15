@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class RightFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
+    RightFragmentCustomAdapter adapter;
     ArrayList<Device> devices;
 
 
@@ -33,15 +33,18 @@ public class RightFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.fragmentRightRecyclerView);
 
+        adapter = new RightFragmentCustomAdapter(new ArrayList<Device>());
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return view;
     }
 
     public void setDeviceMake(DeviceMakes make) {
         devices = Device.createListOfDevices(make);
 
-        adapter = new RightFragmentCustomAdapter(devices);
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter.setDevices(make);
+        adapter.notifyDataSetChanged();
     }
 }

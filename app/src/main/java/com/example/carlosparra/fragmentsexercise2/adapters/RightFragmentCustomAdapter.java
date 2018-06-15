@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.carlosparra.fragmentsexercise2.R;
 import com.example.carlosparra.fragmentsexercise2.models.Device;
+import com.example.carlosparra.fragmentsexercise2.models.DeviceMakes;
 
 import java.util.List;
 
@@ -42,6 +43,11 @@ public class RightFragmentCustomAdapter extends
     @Override
     public int getItemCount() {
         return deviceList.size();
+    }
+
+    public void setDevices(DeviceMakes deviceMake) {
+        this.deviceList = Device.createListOfDevices(deviceMake);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
