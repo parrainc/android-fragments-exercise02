@@ -17,6 +17,15 @@ public class RightFragmentCustomAdapter extends
         RecyclerView.Adapter<RightFragmentCustomAdapter.ViewHolder> {
 
     private List<Device> deviceList;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public RightFragmentCustomAdapter(List<Device> devices) {
         deviceList = devices;
@@ -50,13 +59,25 @@ public class RightFragmentCustomAdapter extends
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         TextView deviceNameTextView;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
 
             deviceNameTextView = itemView.findViewById(R.id.deviceNameTextView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(itemView, position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.carlosparra.fragmentsexercise2.R;
 import com.example.carlosparra.fragmentsexercise2.adapters.RightFragmentCustomAdapter;
@@ -33,7 +34,14 @@ public class RightFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.fragmentRightRecyclerView);
 
-        adapter = new RightFragmentCustomAdapter(new ArrayList<Device>());
+        adapter = new RightFragmentCustomAdapter(new ArrayList<Device>(), getActivity());
+        adapter.setOnItemClickListener(new RightFragmentCustomAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                String deviceName = devices.get(position).getDeviceName();
+                Toast.makeText(getContext(), deviceName + "has been clicked it!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
